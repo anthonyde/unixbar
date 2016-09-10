@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# A worker that publishes audio status as reported by ALSA
+
+hash amixer stdbuf
+
+while :; do
+  amixer sget Master |
+    stdbuf -oL sed -n 's/.*Mono: .\+ \([0-9]\+\) \[.\+%\].\+\[\(off\|on\)\]/'\
+'audio_on=\2\naudio_vol=\1/p'
+  read -r # Wait for next event
+done < <(stdbuf -oL /usr/sbin/alsactl monitor)

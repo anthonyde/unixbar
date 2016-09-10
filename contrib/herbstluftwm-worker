@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# A worker that publishes herbstluftwm status
+
+hash herbstclient
+
+hc() {
+  herbstclient "$@"
+}
+
+hc emit_hook quit_panel
+
+{
+  hc emit_hook tag_bootstrap
+  if [ "$(hc attr tags.focus.client_count)" -gt 0 ]; then
+    title="$(hc attr clients.focus.title)"
+    winid="$(hc attr clients.focus.winid)"
+    hc emit_hook focus_changed "$winid" "$title"
+  fi
+
+  while IFS=$'\t' read -ra parts; do
+    case "${parts[0]}" in
+      tag_*)
+        printf 'tags=%s\n' "$(hc tag_status)"
+        [ ! "$(hc attr tags.focus.client_count)" -gt 0 ] && printf 'title=\n'
+        ;;
+      focus_changed|window_title_changed)
+        printf 'title=%s\n' "${parts[2]}"
+        ;;
+      quit_panel|reload)
+        printf 'quit=1\n'
+        ;;
+    esac
+  done
+} < <(hc --idle '^(.*_changed|tag_.*|quit_panel|reload)$')

@@ -1,0 +1,4 @@
+#!/bin/sh
+# A worker that publishes redshift status
+
+redshift -v | stdbuf -oL sed -n 's/^Status: /red_stat=/p'

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# A worker that publishes battery status based on udev events
+
+hash sed
+
+BAT_UEVENT="/sys/class/power_supply/$BAT_DEV/uevent"
+
+while :; do
+  sed -n 's/^POWER_SUPPLY_CAPACITY=\(.\+\)/bat_cap=\1/p;'\
+'s/^POWER_SUPPLY_STATUS=\(.\+\)/bat_stat=\1/p;' "$BAT_UEVENT"
+  # Throttle change events
+  read -r -t 5 && while read -r -t 1; do :; done
+done < <(stdbuf -oL udevadm monitor -k -s "power_supply/$BAT_DEV" |
+  stdbuf -oL sed -n '/^KERNEL\[/p')
