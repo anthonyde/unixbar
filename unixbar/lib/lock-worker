@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# A worker that locks the screen when the lock hook is received
+
+while read -r; do
+  slock &
+done < <(herbstclient --idle '^lock$')

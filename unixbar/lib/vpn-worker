@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# A worker that publishes VPN status from a FIFO
+
+declare up last_up
+while :; do
+  up="$(<"$VPN_FIFO")"
+  if [ ! "$up" = "$last_up" ]; then
+    printf 'vpn_up=%s\n' "$up"
+    last_up="$up"
+  fi
+  read -r -t 5 # Sleep
+done
