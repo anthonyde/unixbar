@@ -63,8 +63,13 @@ async def amain(loop=None):
       util.open_pipe(rmode="rb", wbuffering=1)
       )
 
+    # This pipe is a placeholder for worker communication.  It isn't used, but
+    # it has to be open so workers can use blocking read to sleep.
+    worker_in, worker_out = s.enter_context(util.open_pipe())
     with threading.redirect_thread_stdout(data_out):
-      kwargs = s.enter_context(worker.run_workers(data_workers))
+      kwargs = s.enter_context(
+        worker.run_workers(data_workers, worker_in=worker_in)
+        )
 
     async with asyncio.run_async(
       *config.bar_args(),
