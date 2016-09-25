@@ -47,10 +47,11 @@ class ProcessWorker:
     self._path = path
 
   @contextlib.contextmanager
-  def start(self, **kwargs):
+  def start(self, worker_in=None, **kwargs):
     """Start the worker, terminating it and its children on exit."""
     proc = subprocess.Popen(
       self._path,
+      stdin=worker_in,
       stdout=sys.stdout, # Use redirected sys.stdout
       preexec_fn=os.setsid
       )
