@@ -60,8 +60,8 @@ general, data is processed in the following order:
 
  * A worker sends data to unixbar
  * A data transformer, if configured, runs on the data
- * Views format the data for presentation
- * View results are aggregated and sent to the bar for rendering
+ * Viewers format the data for presentation
+ * Views are aggregated and sent to the bar for rendering
 
 ### Bar Configuration
 
@@ -102,9 +102,9 @@ from `lib`.
 For more information see the examples in the `contrib` directory.  You can
 symlink these files from 'lib' to use them in your own configuration.
 
-### Views
+### Viewers
 
-Views are functions that control how data is presented.  They are defined in
+Viewers are functions that control how data is presented.  They are defined in
 the `config` subpackage and accept worker data as input.  This data is
 populated from an internal cache by parameter name.  Each viewer can print
 'key=value' strings containing formatted data which is cached internally for
