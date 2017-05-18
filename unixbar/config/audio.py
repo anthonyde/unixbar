@@ -10,11 +10,11 @@ from . import util
 
 __all__ = []
 
-# Volume symbols (i3fonticon)
-AUDIO_MUTE = "\uea42" + chars.MULT
-AUDIO_LOW = "\uea42"
-AUDIO_MED = "\uea43"
-AUDIO_HIGH = "\uea44"
+# Volume symbols (IcoMoon-Free)
+AUDIO_MUTE = "\uea2a"
+AUDIO_LOW = "\uea28"
+AUDIO_MED = "\uea27"
+AUDIO_HIGH = "\uea26"
 
 # Volume states
 AUDIO_VOL_LOW = 54
@@ -56,13 +56,13 @@ def transform_to_int(v):
 def view_audio(osd_out, audio_on=None, audio_vol=None, **ds):
   """View the audio status on the bar and changes in an OSD."""
   if not view_audio._first:
-    print("%{{c}}{sym}\n%{{c}}%{{T2}}{vol_bar}%{{T-}}".format(
+    print("%{{c}}%{{T3}}{sym}%{{T-}}\n%{{c}}%{{T2}}{vol_bar}%{{T-}}".format(
         sym=audio_sym(audio_on, audio_vol, osd=True),
         vol_bar=util.prog_bar(audio_n(audio_vol), AUDIO_N_MAX)
         ),
       file=osd_out
       )
-  print("audio=%{{A:audio:}}%{{T4}}{sym}%{{T-}}%{{A}}".format(
+  print("audio=%{{A:audio:}}%{{T6}}{sym}%{{T-}}%{{A}}".format(
       sym=audio_sym(audio_on, audio_vol)
       ))
 

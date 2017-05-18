@@ -22,7 +22,8 @@ OSD_BAR_ARGS = [
     h=150,
     fonts=(
       "Helvetica Neue:pixelsize=100",
-      "i3fonticon:pixelsize=99" # 100 causes incorrect width for some glyphs
+      "i3fonticon:pixelsize=99", # 100 causes incorrect width for some glyphs
+      "IcoMoon\-Free:pixelsize=100"
       )
     ),
   dict(

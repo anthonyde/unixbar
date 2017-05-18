@@ -11,7 +11,7 @@ __all__ = []
 
 os.environ["VPN_FIFO"] = "/var/run/vpn-virtual-up.fifo"
 
-VPN_UP = "\ue8a1" # i3fonticon
+VPN_UP = "\ue9c9" # IcoMoon-Free
 
 @data.transformer(keys=["vpn_up"])
 @data.on_val()
@@ -22,4 +22,7 @@ def transform_to_bool(v):
 @view.viewer
 def view_vpn(vpn_up=False, **ds):
   """View the VPN status on the bar."""
-  print("vpn=" + VPN_UP * vpn_up)
+  if vpn_up:
+    print("vpn=%{{T6}}{sym}%{{T-}}".format(sym=VPN_UP))
+  else:
+    print("vpn=")
