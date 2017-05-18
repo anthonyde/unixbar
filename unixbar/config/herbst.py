@@ -10,6 +10,8 @@ from . import colors
 
 __all__ = []
 
+TITLE_MAX_LEN = 150
+
 TAG_STATE_FORMATS = {
   ".": "%{{F{c.herbst_tag_empty}}}{name}%{{F-}}", # Empty
   ":": "{name}", # Not empty
@@ -38,6 +40,7 @@ def view_tags(tags=[], **ds):
 @view.viewer
 def view_title(title=None, **ds):
   """View the title of the focused window on the bar."""
+  trunc_title = title[:TITLE_MAX_LEN] + (title[TITLE_MAX_LEN:] and "...")
   print("title=%{{T2}}{title}%{{T-}}".format(
-      title=lemonbar.bar_escape(title)
+      title=lemonbar.bar_escape(trunc_title)
       ))
