@@ -105,10 +105,10 @@ def view_bat(blink_listeners, blink=False, bat_cap=None, bat_stat=None, **ds):
   elif not notify_:
     view_bat._note.close()
 
-  fmts = []
+  fmts = ["%{{A:bat:}}"]
   if bat_cap is not None:
     fmts.append("%{{T3}}{cap}%%{{T-}}")
-  fmts.append("%{{T4}}%{{F{color}}}{sym}%{{F-}}{stat_sym}%{{T-}}")
+  fmts.append("%{{T4}}%{{F{color}}}{sym}%{{F-}}{stat_sym}%{{T-}}%{{A}}")
 
   print(("bat=" + " ".join(fmts)).format(
       cap=bat_cap,
