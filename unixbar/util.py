@@ -213,8 +213,7 @@ def restrict_write(buf, max_len):
   old_write = buf.write
   def write(self, b):
     if len(b) > max_len:
-      warnings.warn("write exceeds maximum length; dropping",
-        warnings.RuntimeWarning)
+      warnings.warn("write exceeds maximum length; dropping", RuntimeWarning)
       return
     old_write(b)
   buf.write = types.MethodType(write, buf)
