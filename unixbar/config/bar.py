@@ -22,7 +22,7 @@ BAR_ZWSP = chars.ZWSP
 
 BAR_FONTS = (
   "Helvetica Neue:pixelsize=13",
-  "Helvetica Neue:style=Bold:pixelsize=13", # Title
+  "Helvetica Neue:style=Bold Italic:pixelsize=13", # Title
   "Helvetica Neue:pixelsize=12", # Battery percentage
   "FreeSans:style=Bold:pixelsize=16", # MULT, ZWSP
   "i3fonticon:pixelsize=16",
