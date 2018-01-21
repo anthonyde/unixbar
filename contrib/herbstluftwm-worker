@@ -12,13 +12,13 @@ hc emit_hook quit_panel
 {
   hc emit_hook tag_bootstrap
   if [ "$(hc attr tags.focus.client_count)" -gt 0 ]; then
-    title="$(hc attr clients.focus.title)"
-    winid="$(hc attr clients.focus.winid)"
+    title=$(hc attr clients.focus.title)
+    winid=$(hc attr clients.focus.winid)
     hc emit_hook focus_changed "$winid" "$title"
   fi
 
   while IFS=$'\t' read -ra parts; do
-    case "${parts[0]}" in
+    case ${parts[0]} in
       tag_*)
         printf 'tags=%s\n' "$(hc tag_status)"
         [ ! "$(hc attr tags.focus.client_count)" -gt 0 ] && printf 'title=\n'

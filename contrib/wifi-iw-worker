@@ -6,7 +6,7 @@ hash iw stdbuf
 declare -A last_vars vars
 while :; do
   while IFS='=' read -r key val; do
-    vars["$key"]="$val"
+    vars[$key]=$val
   done < <(
     iw dev "$WIFI_DEV" link |
       stdbuf -oL sed -n 's/.*SSID: \(.\+\)/wifi_ssid=\1/p;'\
@@ -15,10 +15,10 @@ while :; do
     )
 
   for key in "${!vars[@]}"; do
-    val="${vars[$key]}"
+    val=${vars[$key]}
     if [ ! "$val" = "${last_vars[$key]}" ]; then
       printf '%s=%s\n' "$key" "$val"
-      last_vars["$key"]="$val"
+      last_vars[$key]=$val
     fi
   done
 
