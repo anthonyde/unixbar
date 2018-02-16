@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # A worker that publishes backlight status based on udev events
 
-BL_DIR="/sys/class/backlight/$BL_DEV"
-BNESS_FILE="$BL_DIR/actual_brightness"
-BNESS_MAX_FILE="$BL_DIR/max_brightness"
-POWER_FILE="$BL_DIR/bl_power"
+BL_DIR=/sys/class/backlight/$BL_DEV
+BNESS_FILE=$BL_DIR/actual_brightness
+BNESS_MAX_FILE=$BL_DIR/max_brightness
+POWER_FILE=$BL_DIR/bl_power
 
 while :; do
   bness=$(<"$BNESS_FILE")
