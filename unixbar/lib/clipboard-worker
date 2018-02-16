@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# A worker that publishes clipboard status by polling xclip
+
+hash xclip
+
+declare data last_data
+while :; do
+  [ -z "$(xclip -o)" ]
+  data=$?
+  if [ ! "$data" = "$last_data" ]; then
+    printf 'clip_data=%s\n' "$data"
+    last_data=$data
+  fi
+  read -r -t 1 # Sleep
+done

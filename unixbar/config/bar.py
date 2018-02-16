@@ -48,13 +48,15 @@ def bar_click(k, v):
     subprocess.Popen(["urxvt", "-e", "alsamixer"])
   elif k == "bat":
     subprocess.Popen(["gnome-power-statistics"])
+  elif k == "clip":
+    subprocess.Popen(["xclip", "-i", "/dev/null"])
   elif k == "red":
     subprocess.Popen(["killall", "-USR1", "redshift"])
   elif k == "wifi":
     subprocess.Popen(["wpa_gui"])
 
 LEFT_FMT = "%{{U{c.underline}}}%{{l}}{pad}{v[tags]}%{{c}}{v[title]}"
-RIGHT_VIEWS = ["kb", "red", "audio", "wifi", "vpn", "bat", "clock"]
+RIGHT_VIEWS = ["clip", "kb", "red", "audio", "wifi", "vpn", "bat", "clock"]
 
 def print_bar(**views):
   """Print the bar contents."""
