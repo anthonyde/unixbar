@@ -19,6 +19,7 @@ bat_crit = xrdb.color9
 
 # herbstluftwm
 herbst_tag_empty = re.sub(r"^#..", "#80", xrdb.foreground)
+herbst_tag_focused = underline
 
 # OSD
 osd_background = "#11ffffff"

@@ -15,7 +15,7 @@ TITLE_MAX_LEN = 150
 TAG_STATE_FORMATS = {
   ".": "%{{F{c.herbst_tag_empty}}}{name}%{{F-}}", # Empty
   ":": "{name}", # Not empty
-  "#": "%{{+u}}{name}%{{-u}}", # Focused
+  "#": "%{{F{c.herbst_tag_focused}}}%{{+u}}{name}%{{-u}}%{{F-}}", # Focused
   "!": "{name}" # Urgent
   }
 
