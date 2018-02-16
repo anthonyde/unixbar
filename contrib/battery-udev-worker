@@ -3,7 +3,7 @@
 
 hash sed
 
-BAT_UEVENT="/sys/class/power_supply/$BAT_DEV/uevent"
+BAT_UEVENT=/sys/class/power_supply/$BAT_DEV/uevent
 
 while :; do
   sed -n 's/^POWER_SUPPLY_CAPACITY=\(.\+\)/bat_cap=\1/p;'\
