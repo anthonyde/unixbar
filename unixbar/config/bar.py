@@ -5,6 +5,7 @@ Bar configuration
 import collections
 import subprocess
 
+from ..bin import environ as bin_environ
 from ..lib import lemonbar
 
 from . import chars
@@ -49,7 +50,7 @@ def bar_click(k, v):
   elif k == "bat":
     subprocess.Popen(["gnome-power-statistics"])
   elif k == "clip":
-    subprocess.Popen(["xclip", "-i", "/dev/null"])
+    subprocess.Popen(["clipboard-clear"], env=bin_environ())
   elif k == "red":
     subprocess.Popen(["killall", "-USR1", "redshift"])
   elif k == "wifi":
