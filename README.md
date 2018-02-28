@@ -100,7 +100,7 @@ automatically loaded when unixbar starts and can be accessed by importing them
 from `lib`.
 
 For more information see the examples in the `contrib` directory.  You can
-symlink these files from 'lib' to use them in your own configuration.
+symlink these files from `lib` to use them in your own configuration.
 
 ### Viewers
 
