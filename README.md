@@ -53,7 +53,9 @@ Configuration
 Two subpackages of unixbar determine the active configuration: `config` and
 `lib`.  `config` defines initialization parameters, event handlers, and how
 data is transformed and presented.  `lib` defines workers and extension
-modules.
+modules.  A third subpackage, `bin`, provides a convenient location for
+storing utility programs that can be called from configuration code, but
+doesn't otherwise have any special behavior.
 
 Knowing how data flows through unixbar will make it easier to configure.  In
 general, data is processed in the following order:
