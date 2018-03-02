@@ -19,12 +19,15 @@ AUDIO_HIGH = "\uea26"
 # Volume levels
 AUDIO_VOL_LOW = 54
 AUDIO_VOL_MED = 69
+AUDIO_VOL_MAX = 74
 
 AUDIO_N_MAX = 16
 
+AUDIO_K = util.log_scale(AUDIO_VOL_MAX, AUDIO_N_MAX)
+
 def audio_n(vol):
-  """Map ALSA volume [0, 74] onto [0, 16]."""
-  return int((10 ** (vol / 63) - 1) * 8 / 7 + 1 / 2)
+  """Map ALSA volume [0, vol_max] onto [0, n_max]."""
+  return int(util.exp_transform(AUDIO_K, vol) + 1 / 2)
 
 def audio_sym(on, vol, osd=False):
   """Get the symbol for a volume level."""
