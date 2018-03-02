@@ -53,7 +53,7 @@ class ProcessWorker:
       self._path,
       stdin=worker_in,
       stdout=sys.stdout, # Use redirected sys.stdout
-      preexec_fn=os.setsid
+      start_new_session=True
       )
     try:
       yield
