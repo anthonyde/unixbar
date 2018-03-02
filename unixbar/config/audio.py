@@ -16,7 +16,7 @@ AUDIO_LOW = "\uea28"
 AUDIO_MED = "\uea27"
 AUDIO_HIGH = "\uea26"
 
-# Volume states
+# Volume levels
 AUDIO_VOL_LOW = 54
 AUDIO_VOL_MED = 69
 
@@ -27,7 +27,7 @@ def audio_n(vol):
   return int((10 ** (vol / 63) - 1) * 8 / 7 + 1 / 2)
 
 def audio_sym(on, vol, osd=False):
-  """Get the symbol for an audio state."""
+  """Get the symbol for a volume level."""
   if not on:
     return AUDIO_MUTE
   elif osd:
