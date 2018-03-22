@@ -27,7 +27,8 @@ BAR_FONTS = (
   "Helvetica Neue:pixelsize=12", # Battery percentage
   "FreeSans:style=Bold:pixelsize=16", # MULT, ZWSP
   "i3fonticon:pixelsize=16",
-  "IcoMoon\-Free:pixelsize=16"
+  "IcoMoon\-Free:pixelsize=16",
+  "i3fonticon:pixelsize=10:matrix=0 -1.43 1.17 0" # Battery (vertical)
   )
 
 def bar_args():

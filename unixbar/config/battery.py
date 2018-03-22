@@ -83,7 +83,7 @@ def view_bat(blink_listeners, blink=False, bat_cap=None, bat_stat=None, **ds):
   color = bat_color(bat_cap)
   notify_ = bat_notify(bat_cap, bat_stat)
 
-  stat_sym = ""
+  stat_sym = None
   if bat_stat == "Charging":
     stat_sym = BAT_STAT_CHARGE
   elif bat_stat == "Discharging" and notify_ and blink:
@@ -108,12 +108,15 @@ def view_bat(blink_listeners, blink=False, bat_cap=None, bat_stat=None, **ds):
   fmts = ["%{{A:bat:}}"]
   if bat_cap is not None:
     fmts.append("%{{T3}}{cap}%%{{T-}}")
-  fmts.append("%{{T4}}%{{F{color}}}{sym}%{{F-}}{stat_sym}%{{T-}}%{{A}}")
+  fmts.append("%{{T7}}%{{F{color}}}{sym}%{{F-}}%{{T-}}")
+  if stat_sym is not None:
+    fmts.append("%{{T4}}{stat_sym}%{{T-}}")
+  fmts.append("%{{A}}")
 
   print(("bat=" + " ".join(fmts)).format(
       cap=bat_cap,
       color=color,
-      sym=bat_sym(bat_cap),
+      sym=chars.EMSP + bat_sym(bat_cap),
       stat_sym=stat_sym
       ))
 
