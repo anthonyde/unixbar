@@ -58,7 +58,7 @@ def bar_click(k, v):
     subprocess.Popen(["wpa_gui"])
 
 LEFT_FMT = "%{{U{c.underline}}}%{{l}}{pad}{v[tags]}%{{c}}{v[title]}"
-RIGHT_VIEWS = ["clip", "red", "audio", "wifi", "vpn", "bat", "clock"]
+RIGHT_VIEWS = ["clip", "red", "vpn", "wifi", "audio", "bat", "clock"]
 
 def print_bar(**views):
   """Print the bar contents."""
