@@ -6,4 +6,4 @@ SELF=$(readlink -f "$0")
 SELFDIR=$(dirname "$SELF")
 export PYTHONPATH="${PYTHONPATH:+$PYTHONPATH:}$SELFDIR"
 
-exec python3.5 -m unixbar
+exec python3 -m unixbar
