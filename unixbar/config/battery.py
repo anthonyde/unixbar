@@ -107,7 +107,7 @@ def view_bat(blink_listeners, blink=False, bat_cap=None, bat_stat=None, **ds):
 
   fmts = []
   if bat_cap is not None:
-    fmts.append("%{{T3}}{cap}%%{{T-}}")
+    fmts.append("%{{T3}}{cap}%%%{{T-}}")
   fmts.append("%{{T7}}%{{F{color}}}{sym}%{{F-}}%{{T-}}")
   if stat_sym is not None:
     fmts.append("%{{T4}}{stat_sym}%{{T-}}")
