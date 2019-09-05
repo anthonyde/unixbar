@@ -13,5 +13,5 @@ while :; do
   printf 'bl_bness=%s\nbl_bness_max=%s\nbl_power=%s\n' "$bness" "$bness_max" \
     "$power"
   read -r # Wait for next event
-done < <(stdbuf -oL udevadm monitor -k -s "backlight/$BL_DEV" |
+done < <(stdbuf -oL udevadm monitor -k -s backlight |
   stdbuf -oL sed -n '/^KERNEL\[/p')

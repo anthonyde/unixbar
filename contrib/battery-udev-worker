@@ -10,5 +10,5 @@ while :; do
 's/^POWER_SUPPLY_STATUS=\(.\+\)/bat_stat=\1/p;' "$BAT_UEVENT"
   # Throttle change events
   read -r -t 5 && while read -r -t 1; do :; done
-done < <(stdbuf -oL udevadm monitor -k -s "power_supply/$BAT_DEV" |
+done < <(stdbuf -oL udevadm monitor -k -s power_supply |
   stdbuf -oL sed -n '/^KERNEL\[/p')
