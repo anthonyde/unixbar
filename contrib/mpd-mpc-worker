@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# A worker that publishes MPD status from mpc
+
+hash mpc sed
+
+while read -r; do
+  stat=$(mpc status | sed -n '2s/^\[\(\w*\)\].*$/\1/p')
+  printf 'mpd_stat=%s\n' "${stat:-stopped}"
+done < <(
+  echo
+  while :; do
+    mpc idleloop player
+    read -r -t 60 # Sleep
+  done
+  )
