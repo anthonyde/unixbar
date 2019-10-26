@@ -52,13 +52,15 @@ def bar_click(k, v):
     subprocess.Popen(["gnome-power-statistics"])
   elif k == "clip":
     subprocess.Popen(["clipboard-clear"], env=bin_environ())
+  elif k == "mpd":
+    subprocess.Popen(["ffplay", "-autoexit", "http://mpd:8001/mpd.flac"])
   elif k == "red":
     subprocess.Popen(["killall", "-USR1", "redshift"])
   elif k == "wifi":
     subprocess.Popen(["wpa_gui"])
 
 LEFT_FMT = "%{{U{c.underline}}}%{{l}}{pad}{v[tags]}%{{c}}{v[title]}"
-RIGHT_VIEWS = ["clip", "red", "vpn", "wifi", "audio", "bat", "clock"]
+RIGHT_VIEWS = ["clip", "red", "mpd", "vpn", "wifi", "audio", "bat", "clock"]
 
 def print_bar(**views):
   """Print the bar contents."""
