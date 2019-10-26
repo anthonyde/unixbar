@@ -2,5 +2,5 @@
 # A worker that locks the screen when the lock hook is received
 
 while read -r; do
-  slock &
+  herbstclient spawn slock
 done < <(herbstclient --idle '^lock$')
