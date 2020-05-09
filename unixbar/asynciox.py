@@ -7,7 +7,7 @@ import codecs
 
 from asyncio import *
 
-__all__ = asyncio.__all__ + [
+__all__ = list(asyncio.__all__) + [
   "DecodingStreamReader",
   "EncodingStreamReader",
   "read_pipe",
@@ -20,7 +20,7 @@ class DecodingStreamReader:
     self.decoder = codecs.getincrementaldecoder(encoding)(errors)
     self.reader = reader
 
-  async def __aiter__(self):
+  def __aiter__(self):
     return self
 
   async def __anext__(self):
