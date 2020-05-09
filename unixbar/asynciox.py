@@ -7,7 +7,7 @@ import codecs
 
 from asyncio import *
 
-__all__ = asyncio.__all__ + [
+__all__ = list(asyncio.__all__) + [
   "DecodingStreamReader",
   "EncodingStreamReader",
   "read_pipe",
