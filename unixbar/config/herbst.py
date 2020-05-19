@@ -16,7 +16,7 @@ TAG_STATE_FORMATS = {
   ".": "%{{F{c.herbst_tag_empty}}}{name}%{{F-}}", # Empty
   ":": "{name}", # Not empty
   "#": "%{{F{c.herbst_tag_focused}}}%{{+u}}{name}%{{-u}}%{{F-}}", # Focused
-  "!": "{name}" # Urgent
+  "!": "%{{F{c.herbst_tag_urgent}}}{name}%{{F-}}" # Urgent
   }
 
 def format_tag(state, name):
