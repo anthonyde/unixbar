@@ -25,4 +25,4 @@ herbst_tag_urgent = warning
 
 # OSD
 osd_background = "#11ffffff"
-osd_foreground = "#ee000000"
+osd_foreground = "#ff000000"
