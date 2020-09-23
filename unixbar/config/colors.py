@@ -9,7 +9,7 @@ from . import xrdb
 __all__ = []
 
 # General
-background = "#ff000000"
+background = "#00000000"
 foreground = xrdb.foreground
 underline = xrdb.color12
 warning = xrdb.color11
