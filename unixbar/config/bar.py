@@ -47,7 +47,7 @@ def bar_args():
 def bar_click(k, v):
   """Do something when the bar is clicked."""
   if k == "audio":
-    subprocess.Popen(["urxvt", "-e", "alsamixer"])
+    subprocess.Popen(["alacritty", "-e", "alsamixer"])
   elif k == "bat":
     subprocess.Popen(["gnome-power-statistics"])
   elif k == "clip":
