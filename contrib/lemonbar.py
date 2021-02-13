@@ -7,7 +7,7 @@ from .. import util
 
 @util.compose(lambda argss: [arg for args in list(argss) for arg in args])
 def bar_args(bar, geometry=None, fonts=(), name=None,
-  underline=None, bg=None, fg=None):
+  underline=None, bg=None, fg=None, offset=None):
   """Return a lemonbar command with arguments from keyword arguments."""
   yield bar,
   if geometry is not None:
@@ -23,6 +23,8 @@ def bar_args(bar, geometry=None, fonts=(), name=None,
     yield "-B", bg
   if fg is not None:
     yield "-F", fg
+  if offset is not None:
+    yield "-o", str(offset)
 
 def bar_escape(s):
   """Escape arbitrary text to make it safe for rendering."""
