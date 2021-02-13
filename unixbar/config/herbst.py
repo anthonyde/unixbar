@@ -13,10 +13,14 @@ __all__ = []
 TITLE_MAX_LEN = 150
 
 TAG_STATE_FORMATS = {
-  ".": "%{{F{c.herbst_tag_empty}}}{name}%{{F-}}", # Empty
-  ":": "{name}", # Not empty
-  "#": "%{{F{c.herbst_tag_focused}}}%{{+u}}{name}%{{-u}}%{{F-}}", # Focused
-  "!": "%{{F{c.herbst_tag_urgent}}}{name}%{{F-}}" # Urgent
+  # Empty
+  ".": "%{{F{c.herbst_tag_empty}}}{name}%{{F-}}",
+  # Not empty
+  ":": "{name}",
+  # Focused
+  "#": "%{{B{c.herbst_tag_focused}}}%{{F{c.background}}}{name}%{{F-}}%{{B-}}",
+  # Urgent
+  "!": "%{{F{c.herbst_tag_urgent}}}{name}%{{F-}}"
   }
 
 def format_tag(state, name):

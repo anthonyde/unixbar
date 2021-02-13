@@ -21,6 +21,11 @@ __all__ = [
 
 BAR_ZWSP = chars.ZWSP
 
+BAR_PAD_HEIGHT = 23
+BAR_BORDER_WIDTH = 4
+
+BAR_HEIGHT = BAR_PAD_HEIGHT + BAR_BORDER_WIDTH
+
 BAR_FONTS = (
   "Helvetica Neue:pixelsize=13",
   "Helvetica Neue:style=Bold Italic:pixelsize=13", # Title
@@ -38,10 +43,12 @@ def bar_args():
   # compatible version.
   return lemonbar.bar_args(
     "lemonbar",
+    geometry=(None, BAR_HEIGHT, None, None),
     fonts=BAR_FONTS,
     underline=2,
     bg=colors.background,
-    fg=colors.foreground
+    fg=colors.foreground,
+    offset=BAR_BORDER_WIDTH // -2
     )
 
 def bar_click(k, v):
@@ -59,7 +66,7 @@ def bar_click(k, v):
   elif k == "wifi":
     subprocess.Popen(["wpa_gui"])
 
-LEFT_FMT = "%{{U{c.underline}}}%{{l}}{pad}{v[tags]}%{{c}}{v[title]}"
+LEFT_FMT = "%{{l}}{pad}{v[tags]}%{{c}}{v[title]}"
 RIGHT_VIEWS = ["clip", "red", "mpd", "vpn", "wifi", "audio", "bat", "clock"]
 
 def print_bar(**views):
