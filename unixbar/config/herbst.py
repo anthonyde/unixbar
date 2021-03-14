@@ -14,20 +14,21 @@ TITLE_MAX_LEN = 150
 
 TAG_STATE_FORMATS = {
   # Empty
-  ".": "%{{F{c.herbst_tag_empty}}}{name}%{{F-}}",
+  ".": "%{{B-}}{sep}%{{F{c.herbst_tag_empty}}}{name}%{{F-}}",
   # Not empty
-  ":": "{name}",
+  ":": "%{{B-}}%{{F-}}{sep}{name}",
   # Focused
-  "#": "%{{B{c.herbst_tag_focused}}}%{{F{c.background}}}{name}%{{F-}}%{{B-}}",
+  "#": "{sep}%{{B{c.herbst_tag_focused}}}%{{F{c.background}}}{name}%{{F-}}%{{B-}}",
   # Urgent
-  "!": "%{{F{c.herbst_tag_urgent}}}{name}%{{F-}}"
+  "!": "%{{B-}}{sep}%{{F{c.herbst_tag_urgent}}}{name}%{{F-}}"
   }
 
 def format_tag(state, name):
   """Format a tag according to its state."""
   return TAG_STATE_FORMATS[state].format(
     c=colors,
-    name=lemonbar.bar_escape(name)
+    name=lemonbar.bar_escape(name),
+    sep=" "
     )
 
 @data.transformer(keys=["tags"])
@@ -39,7 +40,7 @@ def transform_to_list(v):
 @view.viewer
 def view_tags(tags=[], **ds):
   """View the tags on the bar."""
-  print("tags=" + " ".join(format_tag(t[0], t[1:]) for t in tags if t))
+  print("tags=" + "".join(format_tag(t[0], t[1:]) for t in tags if t))
 
 @view.viewer
 def view_title(title=None, **ds):

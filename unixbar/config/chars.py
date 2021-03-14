@@ -16,3 +16,6 @@ BFUL = "\u2588"
 
 # Math symbols
 MULT = "\u00d7"
+
+# Logos
+GENTOO = "\uf10d"

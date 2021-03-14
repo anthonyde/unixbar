@@ -33,7 +33,8 @@ BAR_FONTS = (
   "FreeSans:style=Bold:pixelsize=16", # MULT, ZWSP
   "i3fonticon:pixelsize=16",
   "IcoMoon\-Free:pixelsize=16",
-  "i3fonticon:pixelsize=10:matrix=0 -1.49 1.17 0" # Battery (vertical)
+  "i3fonticon:pixelsize=10:matrix=0 -1.49 1.17 0", # Battery (vertical)
+  "font\-logos:pixelsize=16" # Gentoo logo
   )
 
 def bar_args():
@@ -66,7 +67,9 @@ def bar_click(k, v):
   elif k == "wifi":
     subprocess.Popen(["wpa_gui"])
 
-LEFT_FMT = "%{{l}}{pad}{v[tags]}%{{c}}{v[title]}"
+LOGO_FMT = "%{{B{c.active}}}%{{F{c.background}}}{pad}{logo}{pad}"
+LEFT_FMT = "%{{l}}{pad}" + LOGO_FMT + "{v[tags]}%{{B-}}%{{F-}}"
+CENTER_FMT = "%{{c}}{v[title]}"
 RIGHT_VIEWS = ["clip", "red", "mpd", "vpn", "wifi", "audio", "bat", "clock"]
 
 def print_bar(**views):
@@ -75,9 +78,10 @@ def print_bar(**views):
   right_fmt = "%{{r}}" + "{sep}".join(
     "{{v[{}]}}".format(v) for v in RIGHT_VIEWS if v in nonempty_views
     ) + "{pad}"
-  print((LEFT_FMT + right_fmt).format(
+  print((LEFT_FMT + CENTER_FMT + right_fmt).format(
       c=colors,
       v=collections.ChainMap(views, collections.defaultdict(str)),
       pad=chars.ENSP,
-      sep=chars.EMSP
+      sep=chars.EMSP,
+      logo=chars.GENTOO
       ))
