@@ -12,8 +12,6 @@ import threading
 import types
 import warnings
 
-from . import asynciox as asyncio
-
 __all__ = [
   "DirtyDict",
   "Tee",
@@ -65,7 +63,7 @@ class DirtyDict(dict, collections.abc.MutableMapping):
 
   def dirty_future(self, loop=None):
     """Get a future for the next update."""
-    dirty_future = asyncio.Future(loop=loop)
+    dirty_future = loop.create_future()
     self._dirty_futures.append(dirty_future)
     return dirty_future
 

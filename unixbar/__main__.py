@@ -53,7 +53,7 @@ async def data_view_loop(data_, out_stream, drain_cb=None, loop=None,
 
 async def amain(loop=None):
   """Run the bar asynchronously until a worker quits or something fails."""
-  amain.done_future = asyncio.Future(loop=loop)
+  amain.done_future = loop.create_future()
 
   with contextlib.ExitStack() as s:
     s.enter_context(threading.thread_local_stdout())
