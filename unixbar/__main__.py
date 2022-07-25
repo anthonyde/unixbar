@@ -115,7 +115,7 @@ async def amain(loop=None):
 
 def main():
   """Run the bar."""
-  loop = asyncio.get_event_loop()
+  loop = asyncio.new_event_loop()
   loop.run_until_complete(amain(loop=loop))
   loop.close()
 
