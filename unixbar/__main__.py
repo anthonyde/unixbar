@@ -31,7 +31,7 @@ async def data_view_loop(data_, out_stream, drain_cb=None, loop=None,
   while True:
     await data_.dirty_future(loop=loop)
     # Yield to combine updates.
-    await asyncio.sleep(0, loop=loop)
+    await asyncio.sleep(0)
 
     with data_.dirtykeys() as dirty_keys:
       view_stream = io.StringIO()
@@ -74,8 +74,7 @@ async def amain(loop=None):
     async with asyncio.run_async(
       *config.bar_args(),
       stdin=subprocess.PIPE,
-      stdout=subprocess.PIPE,
-      loop=loop
+      stdout=subprocess.PIPE
       ) as (bar_stdin, bar_stdout):
       data_reader = await asyncio.read_pipe(data_in, loop=loop)
       data_ = util.DirtyDict()
@@ -107,7 +106,6 @@ async def amain(loop=None):
           data_view_coroutine,
           click_coroutine
           ],
-        loop=loop,
         return_when=concurrent.futures.FIRST_COMPLETED
         )
       for future in pending:
