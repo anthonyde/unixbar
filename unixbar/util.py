@@ -5,7 +5,6 @@ Miscellaneous things that don't fit anywhere else
 import collections
 import contextlib
 import ctypes
-import itertools
 import os
 import pkgutil
 import threading
