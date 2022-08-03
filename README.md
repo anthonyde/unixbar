@@ -30,7 +30,7 @@ Installation
 
 Requirements:
 
- * Python 3.5+
+ * Python 3.8+
  * A status bar program like dzen2 or lemonbar
 
 First, get the code:
